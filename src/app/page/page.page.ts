@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { NavController, NavParams, ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { IAuthor, ICategory, IPost, ITag } from '../../interfaces/wordpress';
 import { WordpressProvider } from '../../providers/wordpress/wordpress';
 
@@ -13,7 +13,6 @@ export class PagePage implements OnInit {
 
   constructor(
     public navCtrl: NavController,
-    // public navParams: NavParams,
     public wp: WordpressProvider,
     public toastCtrl: ToastController,
     private route: ActivatedRoute,

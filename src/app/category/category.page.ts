@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { IPostParams } from '../../interfaces/wordpress';
 import { WordpressProvider } from '../../providers/wordpress/wordpress';
 
@@ -13,12 +13,10 @@ export class CategoryPage implements OnInit {
   public title: string;
   public search: IPostParams = {
     type: 'wait',
-    categorySlug: this.navParams.get('key'),
   };
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
     public wp: WordpressProvider,
   ) {}
 

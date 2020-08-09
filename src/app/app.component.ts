@@ -4,6 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { NavController, Platform } from '@ionic/angular';
 import { Store } from '@ngrx/store';
+import { IPage } from './_shared/sidebar/sidebar.component';
 
 // import {DELETE as DELETE1, REGISTER as REGISTER1} from "../../_old/src/reducers/search";
 // import {REGISTER as REGISTER2} from "../../_old/src/reducers/current";
@@ -35,16 +36,18 @@ export class AppComponent {
     clearInterval(this.intervalCurrentPage);
   }
 
-  public handlesetRootPage($event) {
-    if ($event.params.postID === undefined) {
-      this.navCtrl.navigateRoot(`${$event.component}`);
-      return;
+  public handleSetRootPage(clickPage: IPage) {
+    let createdUrl: string;
+    if (clickPage.component === 'page') {
+      createdUrl = `/${clickPage.component}/${clickPage.params.postID}`;
+    } else if (clickPage.component === 'category') {
+      createdUrl = `/${clickPage.component}/${clickPage.ID}`;
+    } else {
+      createdUrl = clickPage.component;
     }
-    /**
-     * このリンクがページとカテゴリ共通になってる
-     */
-    console.log(`/${$event.component}/${$event.params.postID}`);
-    this.navCtrl.navigateRoot(`/${$event.component}/${$event.params.postID}`);
+    console.log(clickPage);
+
+    this.navCtrl.navigateRoot(createdUrl);
   }
   //
   // handlesetSearchKeyword(keyword) {

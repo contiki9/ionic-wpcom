@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { AlertController, NavController, NavParams, ToastController } from '@ionic/angular';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { IAuthor, ICategory, IPost, IStragePost, ITag } from '../../interfaces/wordpress';
@@ -16,7 +16,6 @@ export class SinglePage implements OnInit {
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
-    // public navParams: NavParams,
     public router: Router,
     public route: ActivatedRoute,
     public storage: Storage,

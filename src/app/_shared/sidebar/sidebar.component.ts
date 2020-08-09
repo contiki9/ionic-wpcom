@@ -25,7 +25,7 @@ export interface IPage {
 })
 export class SidebarComponent implements OnInit {
   // @ViewChild() nav: NavController;
-  @Output() public setRootPage = new EventEmitter();
+  @Output() public setRootPage: EventEmitter<IPage> = new EventEmitter();
 
   public pages: Array<IPage>;
   public categories: Array<IPage>;
@@ -38,6 +38,7 @@ export class SidebarComponent implements OnInit {
   }
 
   public openPage(page: IPage): void {
+    console.log({page});
     this.setRootPage.emit(page);
   }
 
