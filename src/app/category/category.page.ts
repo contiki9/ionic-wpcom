@@ -32,7 +32,7 @@ export class CategoryPage implements OnInit {
     this.title = this.catSlug;
     const f = () =>
       new Promise((resolve) => {
-        resolve(encodeURI(this.catSlug));
+        resolve(this.catSlug);
       });
     f().then((slug: string) => {
       this.wp.getCategory(slug).subscribe((data) => (this.title = data.name));
