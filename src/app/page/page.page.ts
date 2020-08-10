@@ -4,12 +4,20 @@ import { NavController, NavParams, ToastController } from '@ionic/angular';
 import { IAuthor, ICategory, IPost, ITag } from '../../interfaces/wordpress';
 import { WordpressProvider } from '../../providers/wordpress/wordpress';
 
+import { PostDetailService} from '../_service/post-detail.service';
+
 @Component({
   selector: 'app-page',
   templateUrl: './page.page.html',
-  styleUrls: ['./page.page.scss'],
+  styleUrls: ['../../theme/_post-detail.scss','./page.page.scss'],
 })
 export class PagePage implements OnInit {
+  public title: string;
+  public article: IPost;
+  public pastData: Promise<IPost>;
+  public url: string = window.location.href;
+
+
 
   constructor(
     public navCtrl: NavController,
@@ -17,26 +25,25 @@ export class PagePage implements OnInit {
     public wp: WordpressProvider,
     public toastCtrl: ToastController,
     private route: ActivatedRoute,
+    public postDetail: PostDetailService,
   ) { }
-  public title: string;
-  public article: IPost;
-  public url: string = window.location.href;
-  public shareURL: {
-    twitter: string;
-  };
 
   public ngOnInit() {
+    this.pastData = new Promise((resolve)=>{
+      this.wp.getPostArticle(Number(this.route.snapshot.paramMap.get('postID'))).subscribe((data) => {
+       this.title = !this.title ? data.title : this.title;
+       this.article = data;
+       setTimeout(() => {
+        this.postDetail.trimArticle();
+       }, 100);
+       //this.checkBookmarked();
+       resolve(data);
+       });
+   });
   }
 
   public ionViewWillEnter() {
-    this.wp.getPostArticle(Number(this.route.snapshot.paramMap.get('postID'))).subscribe((data) => {
-      this.title = !this.title ? data.title : this.title;
-      this.article = data;
-      // this.shareURL = this.createShareURL(this.url, data);
-      setTimeout(() => {
-        // this.trimArticle();
-      }, 100);
-    });
+
   }
 
   public viewAuthor(author: IAuthor): void {
@@ -51,21 +58,7 @@ export class PagePage implements OnInit {
     // this.navCtrl.setRoot('Tag', { title: tag.name, key: tag.slug });
   }
 
-  // addClipboard(): void {
-  //   const body = document.body;
-  //   const textArea = document.createElement('textarea');
-  //   textArea.value = this.url;
-  //   body.appendChild(textArea);
-  //   textArea.select();
-  //   document.execCommand('copy');
-  //   body.removeChild(textArea);
-  //
-  //   const toast = this.toastCtrl.create({
-  //     message: 'URLをクリップボードにコピーしました',
-  //     duration: 2500,
-  //   });
-  //   toast.present();
-  // }
+
 
   // private trimArticle() {
   //   Array.prototype.forEach.call(document.querySelectorAll('article iframe'), function(node) {
@@ -86,17 +79,4 @@ export class PagePage implements OnInit {
   //   });
   // }
 
-  // private createShareURL(url, params: IPost) {
-  //   if (params.origin.excerpt && params.origin.excerpt.length > 0) {
-  //     params.origin.excerpt = params.origin.excerpt.replace(/\s|&nbsp;/g, '');
-  //   }
-  //
-  //   return {
-  //     twitter:
-  //       'https://twitter.com/intent/tweet?url=' +
-  //       encodeURIComponent(url) +
-  //       '&text=' +
-  //       encodeURIComponent(params.origin.title),
-  //   };
-  // }
 }

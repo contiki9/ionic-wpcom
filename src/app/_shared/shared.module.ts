@@ -10,6 +10,8 @@ import {FooterComponent} from './footer/footer.component';
 import {PostsComponent} from './template-parts/posts/posts.component';
 import {ShareButtonsComponent} from './template-parts/share-buttons/share-buttons.component';
 
+import {PostDetailService} from '../_service/post-detail.service';
+
 @NgModule({
   declarations: [
     FooterComponent,

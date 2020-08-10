@@ -1,53 +1,51 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { AlertController, NavController, NavParams, ToastController } from '@ionic/angular';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { IAuthor, ICategory, IPost, IStragePost, ITag } from '../../interfaces/wordpress';
 import { WordpressProvider } from '../../providers/wordpress/wordpress';
 
+import { PostDetailService} from '../_service/post-detail.service';
+
 @Component({
   selector: 'app-single',
   templateUrl: './single.page.html',
-  styleUrls: ['./single.page.scss'],
+  styleUrls: ['../../theme/_post-detail.scss','./single.page.scss'],
 })
 export class SinglePage implements OnInit {
+
+  public title: string;
+  public article: IPost;
+  public pastData: Promise<IPost>;
+  public url: string = window.location.href;
+  public noImageURL: string = environment.noImageURL;
+  public bookmarked = false;
 
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
-    // public navParams: NavParams,
     public router: Router,
     public route: ActivatedRoute,
     public storage: Storage,
     public wp: WordpressProvider,
     public toastCtrl: ToastController,
+    public postDetail: PostDetailService,
   ) {
   }
 
-  public title: string;
-  public article: IPost;
-  public pastData: Promise<any>;
-  public url: string = window.location.href;
-  public shareURL: {
-    twitter: string;
-  };
-  public noImageURL: string = environment.noImageURL;
-  public bookmarked = false;
-
   public ngOnInit() {
     this.pastData = new Promise((resolve)=>{
-       this.wp.getPostArticle(Number(this.route.snapshot.paramMap.get('postID'))).subscribe((data) => {
-        this.title = !this.title ? data.title : this.title;
-        this.article = data;
-        console.log('this.article',this.article)
-        setTimeout(() => {
-          this.trimArticle();
-        }, 100);
-        this.checkBookmarked();
-        resolve(data);
-        });
-    });
+      this.wp.getPostArticle(Number(this.route.snapshot.paramMap.get('postID'))).subscribe((data) => {
+       this.title = !this.title ? data.title : this.title;
+       this.article = data;
+       setTimeout(() => {
+         this.postDetail.trimArticle();
+       }, 100);
+       this.checkBookmarked();
+       resolve(data);
+       });
+   });
   }
 
   public ionViewWillEnter() {
@@ -196,25 +194,4 @@ export class SinglePage implements OnInit {
       });
     });
   }
-
-  private trimArticle() {
-    Array.prototype.forEach.call(document.querySelectorAll('article iframe'), (node) => {
-      node.setAttribute('width', '100%');
-    });
-
-    Array.prototype.forEach.call(document.querySelectorAll('article iframe.wp-embedded-content'), (node) => {
-      node.style.display = 'none';
-    });
-
-    Array.prototype.forEach.call(document.querySelectorAll('article a'), (node) => {
-      node.setAttribute('target', '_blank');
-      node.setAttribute('rel', 'noopener');
-    });
-
-    Array.prototype.forEach.call(document.querySelectorAll('article div[data-shortcode=caption]'), (node) => {
-      node.style.width = '100%';
-    });
-  }
-
-
 }
