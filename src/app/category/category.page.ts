@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams} from '@ionic/angular';
+import { NavController} from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 import { IPostParams } from '../../interfaces/wordpress';
 import { WordpressProvider } from '../../providers/wordpress/wordpress';
@@ -27,7 +27,6 @@ export class CategoryPage implements OnInit {
 
   public ngOnInit() {}
   public ionViewWillEnter() {
-    console.log('カテゴリの読み込み',);
     this.catSlug = this.route.snapshot.params.categorySlug;
     this.title = this.catSlug;
     const f = () =>

@@ -33,6 +33,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./category/category.module').then((m) => m.CategoryPageModule),
   },
+  {
+    path: 'author/:authorID',
+    loadChildren: () => import('./author/author.module').then( m => m.AuthorPageModule)
+  },
 ];
 
 @NgModule({

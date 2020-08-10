@@ -95,7 +95,6 @@ export class WordpressProvider {
       params = params.append('search', search.search);
     }
 
-    // console.log(params);
     return this.http
       .get<{
         posts: IPost[];
