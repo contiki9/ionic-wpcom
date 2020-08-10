@@ -11,6 +11,7 @@ import {PostsComponent} from './template-parts/posts/posts.component';
 import {ShareButtonsComponent} from './template-parts/share-buttons/share-buttons.component';
 import {PostInformationComponent} from './template-parts/post-information/post-information.component';
 import {PostsHeaderComponent} from './template-parts/posts-header/posts-header.component';
+import {BookmarkPostsComponent} from './template-parts/bookmark-posts/bookmark-posts.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {PostsHeaderComponent} from './template-parts/posts-header/posts-header.c
     ShareButtonsComponent,
     PostInformationComponent,
     PostsHeaderComponent,
+    BookmarkPostsComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +34,7 @@ import {PostsHeaderComponent} from './template-parts/posts-header/posts-header.c
     ShareButtonsComponent,
     PostInformationComponent,
     PostsHeaderComponent,
+    BookmarkPostsComponent,
   ],
 })
 export class SharedModule { }

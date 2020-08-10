@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SharedModule } from '../_shared/shared.module';
 import { CategoryPageRoutingModule } from './category-routing.module';
 import { CategoryPage } from './category.page';
+
+import { SharedModule } from '../_shared/shared.module';
 
 @NgModule({
   imports: [

@@ -13,7 +13,7 @@ import { WordpressProvider } from '../../../../providers/wordpress/wordpress';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss'],
+  styleUrls: ['../../../../theme/_posts.scss','./posts.component.scss'],
   providers: [WordpressProvider],
 })
 export class PostsComponent implements OnChanges, OnInit, OnDestroy {

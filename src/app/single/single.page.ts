@@ -57,7 +57,8 @@ export class SinglePage implements OnInit {
       if (data) {
         const bookmarks: Array<IStragePost> = JSON.parse(data);
         Array.prototype.forEach.call(bookmarks, (node) => {
-          if (node.domain === environment.wordpressURL && node.postID === this.route.snapshot.paramMap.get('postID')) {
+        console.log("SinglePage -> checkBookmarked -> node", node)
+          if (node.domain === environment.wordpressURL && node.postID === Number(this.route.snapshot.paramMap.get('postID'))) {
             this.bookmarked = true;
           }
         });

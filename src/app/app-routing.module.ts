@@ -37,6 +37,10 @@ const routes: Routes = [
     path: 'author/:authorID',
     loadChildren: () => import('./author/author.module').then( m => m.AuthorPageModule)
   },
+  {
+    path: 'bookmark',
+    loadChildren: () => import('./bookmark/bookmark.module').then( m => m.BookmarkPageModule)
+  },
 ];
 
 @NgModule({

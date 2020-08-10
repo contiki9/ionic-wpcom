@@ -5,12 +5,12 @@ import { IPostParams } from '../../interfaces/wordpress';
 import { WordpressProvider } from '../../providers/wordpress/wordpress';
 
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.page.html',
-  styleUrls: ['./category.page.scss'],
+  selector: 'app-bookmark',
+  templateUrl: './bookmark.page.html',
+  styleUrls: ['./bookmark.page.scss'],
 })
-export class CategoryPage implements OnInit {
-  public type = 'カテゴリ';
+export class BookmarkPage implements OnInit {
+  public type = 'お気に入り';
   public title: string;
   public catSlug:string;
   public search: IPostParams = {
