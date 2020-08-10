@@ -19,12 +19,14 @@
   dd {
     min-width: 300px;
     &.profile {
-      display: flex;
-      align-items: center;
-      img {
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
+      ul li{
+        display: flex;
+        align-items: center;
+        img {
+          width: 40px;
+          height: 40px;
+          margin-right: 10px;
+        }
       }
     }
     ul {

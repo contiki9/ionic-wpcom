@@ -8,7 +8,9 @@
   <dl class="attribute">
     <dt><ion-icon name="person"></ion-icon> 執筆者</dt>
     <dd class="profile clickeble" (click)="viewAuthor(article.author)">
-      <img src="{{article.author.avatar_URL}}" class="radius" alt="{{article.author.name}}" /><a>{{article.author.name}}</a>
+      <ul>
+        <li class="link"><img src="{{article.author.avatar_URL}}" class="radius" alt="{{article.author.name}}" /><a>{{article.author.name}}</a></li>
+      </ul>
     </dd>
   </dl>
   <dl class="attribute">

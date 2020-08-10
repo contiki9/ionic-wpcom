@@ -10,8 +10,8 @@ import {FooterComponent} from './footer/footer.component';
 import {PostsComponent} from './template-parts/posts/posts.component';
 import {ShareButtonsComponent} from './template-parts/share-buttons/share-buttons.component';
 import {PostInformationComponent} from './template-parts/post-information/post-information.component';
+import {PostsHeaderComponent} from './template-parts/posts-header/posts-header.component';
 
-import {PostDetailService} from '../_service/post-detail.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import {PostDetailService} from '../_service/post-detail.service';
     PostsComponent,
     ShareButtonsComponent,
     PostInformationComponent,
+    PostsHeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +31,7 @@ import {PostDetailService} from '../_service/post-detail.service';
     PostsComponent,
     ShareButtonsComponent,
     PostInformationComponent,
+    PostsHeaderComponent,
   ],
 })
 export class SharedModule { }

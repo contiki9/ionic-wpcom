@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { IPostParams } from '../../interfaces/wordpress';
 
 @Component({
@@ -11,9 +10,8 @@ export class ArchivePage implements OnInit {
   public search: IPostParams = {
     type: 'post',
   };
-  constructor(
-    public navCtrl: NavController,
-  ) { }
+  public title = 'archive';
+  constructor() { }
 
   public ngOnInit() {
   }
