@@ -27,6 +27,7 @@ export class SinglePage implements OnInit {
 
   public title: string;
   public article: IPost;
+  public pastData: Promise<any>;
   public url: string = window.location.href;
   public shareURL: {
     twitter: string;
@@ -35,19 +36,22 @@ export class SinglePage implements OnInit {
   public bookmarked = false;
 
   public ngOnInit() {
-
+    this.pastData = new Promise((resolve)=>{
+       this.wp.getPostArticle(Number(this.route.snapshot.paramMap.get('postID'))).subscribe((data) => {
+        this.title = !this.title ? data.title : this.title;
+        this.article = data;
+        console.log('this.article',this.article)
+        setTimeout(() => {
+          this.trimArticle();
+        }, 100);
+        this.checkBookmarked();
+        resolve(data);
+        });
+    });
   }
 
   public ionViewWillEnter() {
-    this.wp.getPostArticle(Number(this.route.snapshot.paramMap.get('postID'))).subscribe((data) => {
-      this.title = !this.title ? data.title : this.title;
-      this.article = data;
-      this.shareURL = this.createShareURL(location.href, data);
-      setTimeout(() => {
-        this.trimArticle();
-      }, 100);
-      this.checkBookmarked();
-    });
+
   }
 
   public viewAuthor(author: IAuthor): void {
@@ -65,21 +69,7 @@ export class SinglePage implements OnInit {
     // this.navCtrl.navigateRoot('Tag', { title: tag.name, key: tag.slug });
   }
 
-  public async addClipboard(): Promise<void> {
-    const body = document.body;
-    const textArea = document.createElement('textarea');
-    textArea.value = location.href;
-    body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    body.removeChild(textArea);
 
-    const toast = await this.toastCtrl.create({
-      message: 'URLをクリップボードにコピーしました',
-      duration: 2500,
-    });
-    await toast.present();
-  }
 
   private checkBookmarked() {
     this.storage.get('bookmarks').then((data) => {
@@ -226,18 +216,5 @@ export class SinglePage implements OnInit {
     });
   }
 
-  private createShareURL(url, params: IPost) {
-    if (params.origin.excerpt && params.origin.excerpt.length > 0) {
-      params.origin.excerpt = params.origin.excerpt.replace(/\s|&nbsp;/g, '');
-    }
-
-    return {
-      twitter:
-        'https://twitter.com/intent/tweet?url=' +
-        encodeURIComponent(url) +
-        '&text=' +
-        encodeURIComponent(params.origin.title),
-    };
-  }
 
 }

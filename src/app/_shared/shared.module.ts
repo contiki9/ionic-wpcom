@@ -8,11 +8,13 @@ import { PipesModule } from '../../pipes/pipes.module';
 import {FooterComponent} from './footer/footer.component';
 // import { BookmarkPostsComponent } from './template-parts/bookmark-posts/posts';
 import {PostsComponent} from './template-parts/posts/posts.component';
+import {ShareButtonsComponent} from './template-parts/share-buttons/share-buttons.component';
 
 @NgModule({
   declarations: [
     FooterComponent,
     PostsComponent,
+    ShareButtonsComponent,
   ],
   imports: [
     CommonModule,
@@ -22,6 +24,7 @@ import {PostsComponent} from './template-parts/posts/posts.component';
   exports: [
     FooterComponent,
     PostsComponent,
+    ShareButtonsComponent,
   ],
 })
 export class SharedModule { }
