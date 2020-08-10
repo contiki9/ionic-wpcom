@@ -1,0 +1,46 @@
+@import '../../../../theme/variables';
+.attribute {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 0.8rem;
+  dt,
+  a {
+    display: block;
+    padding: 4px 0 2px;
+    min-width: 100px;
+
+    ion-icon {
+      position: relative;
+      top: 1px;
+      margin-right: 2px;
+    }
+  }
+  dd {
+    min-width: 300px;
+    &.profile {
+      display: flex;
+      align-items: center;
+      img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+      }
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin: 0 2px 2px;
+        &.link{
+          color:color($colors,link);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -226,3 +226,17 @@
     --ion-tab-bar-background: #1f1f1f;
   }
 }
+
+$colors: (
+  primary: #4e8ef7,
+  secondary: #32db64,
+  danger: #f53d3d,
+  light: #f4f4f4,
+  dark: #999,
+  black: #333,
+  white: #fff,
+  link: #4e8ef7,
+);
+@function color($colors, $key) {
+  @return map-get($colors, $key);
+}

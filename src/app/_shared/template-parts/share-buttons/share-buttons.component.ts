@@ -9,7 +9,6 @@ import { IAuthor, ICategory, IPost, IStragePost, ITag } from '../../../../interf
 })
 export class ShareButtonsComponent implements OnInit {
   @Input() pastData:Promise<IPost>;
-  //@Input() pastData:any;
   public shareURL: {
     twitter: string;
   };

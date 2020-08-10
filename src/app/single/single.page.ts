@@ -52,23 +52,6 @@ export class SinglePage implements OnInit {
 
   }
 
-  public viewAuthor(author: IAuthor): void {
-    // this.navCtrl.setRoot('Author', { title: author.name, key: author.ID });
-    // this.navCtrl.navigateRoot('Author', { title: author.name, key: author.ID });
-  }
-
-  public viewCategory(category: ICategory): void {
-    // this.navCtrl.setRoot('Category', { title: category.name, key: category.slug });
-    // this.navCtrl.navigateRoot('Category', { title: category.name, key: category.slug });
-  }
-
-  public viewTag(tag: ITag): void {
-    // this.navCtrl.setRoot('Tag', { title: tag.name, key: tag.slug });
-    // this.navCtrl.navigateRoot('Tag', { title: tag.name, key: tag.slug });
-  }
-
-
-
   private checkBookmarked() {
     this.storage.get('bookmarks').then((data) => {
       if (data) {

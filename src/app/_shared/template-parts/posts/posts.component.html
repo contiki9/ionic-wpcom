@@ -1,6 +1,6 @@
 <ion-spinner *ngIf="!Loaded" color="primary"></ion-spinner>
 <ion-list *ngIf="Loaded">
-  <ion-item *ngFor="let post of posts;trackBy:post?.ID" (click)="viewSingle(post)" class="clickeble">
+  <ion-item *ngFor="let post of posts;trackBy:post?.ID" (click)="viewSingle(post)" class="clickeble" button>
     <ion-row style="width: 100%" class="ion-nowrap">
       <ion-col size="auto">
         <ion-avatar class="thumbnail" [ngStyle]="{'background-image': 'url(' + post.post_thumbnail.URL + '?w=300)'}"></ion-avatar>

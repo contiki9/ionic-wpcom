@@ -1,0 +1,26 @@
+<div *ngIf="article">
+  <dl class="attribute">
+    <dt><ion-icon name="globe"></ion-icon> 元記事</dt>
+    <dd>
+      <a href="{{article.short_URL}}" target="_blank">{{article.short_URL}}</a>
+    </dd>
+  </dl>
+  <dl class="attribute">
+    <dt><ion-icon name="person"></ion-icon> 執筆者</dt>
+    <dd class="profile clickeble" (click)="viewAuthor(article.author)">
+      <img src="{{article.author.avatar_URL}}" class="radius" alt="{{article.author.name}}" /><a>{{article.author.name}}</a>
+    </dd>
+  </dl>
+  <dl class="attribute">
+    <dt><ion-icon name="square"></ion-icon> カテゴリ</dt>
+    <dd>
+      <ul><li class="link" *ngFor="let cat of article.categories | keyvalue"  (click)="viewCategory(cat.value)" ion-button small>{{cat.key}}</li></ul>
+    </dd>
+  </dl>
+  <dl class="attribute">
+    <dt><ion-icon name="pricetag"></ion-icon> タグ</dt>
+    <dd>
+      <ul><li class="link" *ngFor="let tag of article.tags | keyvalue;" (click)="viewTag(tag.value)" ion-button small>{{tag.key}}</li></ul>
+    </dd>
+  </dl>
+</div>

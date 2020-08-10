@@ -9,6 +9,7 @@ import {FooterComponent} from './footer/footer.component';
 // import { BookmarkPostsComponent } from './template-parts/bookmark-posts/posts';
 import {PostsComponent} from './template-parts/posts/posts.component';
 import {ShareButtonsComponent} from './template-parts/share-buttons/share-buttons.component';
+import {PostInformationComponent} from './template-parts/post-information/post-information.component';
 
 import {PostDetailService} from '../_service/post-detail.service';
 
@@ -17,6 +18,7 @@ import {PostDetailService} from '../_service/post-detail.service';
     FooterComponent,
     PostsComponent,
     ShareButtonsComponent,
+    PostInformationComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,7 @@ import {PostDetailService} from '../_service/post-detail.service';
     FooterComponent,
     PostsComponent,
     ShareButtonsComponent,
+    PostInformationComponent,
   ],
 })
 export class SharedModule { }
